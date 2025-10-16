@@ -1,24 +1,38 @@
-import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import Container from "../Components/Container";
 
 const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to={"/"} className={({ isActive }) =>
-              isActive ? "text-red-500 font-bold" : "text-black"
-            }>Home</NavLink>
+        <NavLink
+          to={"/"}
+          className={({ isActive }) =>
+            isActive ? "text-red-500 font-bold" : "text-black"
+          }
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/login"} className={({ isActive }) =>
-              isActive ? "text-red-500 font-bold" : "text-black"
-            }>Login</NavLink>
+        <NavLink
+          to={"/about"}
+          className={({ isActive }) =>
+            isActive ? "text-red-500 font-bold" : "text-black"
+          }
+        >
+          About
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/register"} className={({ isActive }) =>
-              isActive ? "text-red-500 font-bold" : "text-black"
-            }>Register</NavLink>
+        <NavLink
+          to={"/contact"}
+          className={({ isActive }) =>
+            isActive ? "text-red-500 font-bold" : "text-black"
+          }
+        >
+          Contact
+        </NavLink>
       </li>
     </>
   );
@@ -27,6 +41,7 @@ const Navbar = () => {
       <Container>
         <div className="navbar ">
           <div className="navbar-start">
+            {/* dropdown menu for small screen */}
             <div className="dropdown">
               <div
                 tabIndex={0}
@@ -56,13 +71,15 @@ const Navbar = () => {
                 {links}
               </ul>
             </div>
-            <a className="btn btn-ghost text-xl">daisyUI</a>
+            {/* app title */}
+            <a className="btn btn-ghost text-xl">TaskBuddy</a>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
+          {/* sign in & register button */}
           <div className="navbar-end">
-            <a className="btn">Button</a>
+            <Link to={'/login'} className="btn">Sign in</Link>
           </div>
         </div>
       </Container>
