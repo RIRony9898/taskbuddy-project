@@ -94,7 +94,7 @@ const Navbar = () => {
                 <div className="flex flex-col md:flex-row items-center gap-1 mr-5">
                   <div className="avatar">
                     <div className="w-12 rounded-full">
-                      <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
+                      <img src={user.photoURL || "https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"} />
                     </div>
                   </div>
                   <div className="hidden md:flex">

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import AuthContext from "./AuthContext";
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import { auth } from "../Firebase/firebase.config";
@@ -21,6 +23,12 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  //   sign in with google
+  const googleProvider = new GoogleAuthProvider();
+  const googleLogin = () => {
+  return  signInWithPopup(auth, googleProvider)
+  }
+
   // current user
   const unSubscribe = useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -29,18 +37,18 @@ const AuthProvider = ({ children }) => {
     return unSubscribe;
   }, []);
 
-//   sign out
-const logout = () => {
-    signOut(auth)
-.then(result => {
-    console.log(result)
-    toast.info('Logout successfully')
-})
-.catch(error => {
-    console.log(error.message)
-    toast.error(error.message)
-})
-}
+  //   sign out
+  const logout = () => {
+   return signOut(auth)
+      .then((result) => {
+        console.log(result);
+        toast.info("Logout successfully");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast.error(error.message);
+      });
+  };
 
   // this will go in other route
   const authInfo = {
@@ -48,6 +56,7 @@ const logout = () => {
     signinUser,
     user,
     logout,
+    googleLogin,
   };
   return (
     <div>
