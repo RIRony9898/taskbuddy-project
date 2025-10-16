@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Container from "../Components/Container";
 import { Link } from "react-router";
-import { AuthContext } from "../Authentication/AuthContext";
+import AuthContext from "../Authentication/AuthContext";
 
 const Register = () => {
   const {createUser} = useContext(AuthContext)

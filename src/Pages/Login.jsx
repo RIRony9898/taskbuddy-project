@@ -1,12 +1,23 @@
 import { Link } from "react-router";
 import Container from "../Components/Container";
+import { useContext } from "react";
+import AuthContext from "../Authentication/AuthContext";
 
 const Login = () => {
+  const { signinUser } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log({ email, password });
+
+    signinUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div>
