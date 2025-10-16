@@ -12,7 +12,7 @@ const firebaseConfig = {
   projectId: "taskbuddy-project",
   storageBucket: "taskbuddy-project.firebasestorage.app",
   messagingSenderId: "1042266098677",
-  appId: "1:1042266098677:web:d1834495261ef7eacceebc"
+  appId: "1:1042266098677:web:d1834495261ef7eacceebc",
 };
 
 // Initialize Firebase
