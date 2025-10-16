@@ -5,7 +5,7 @@ import AuthContext from "../Authentication/AuthContext";
 
 const Register = () => {
   const {createUser} = useContext(AuthContext)
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
@@ -27,7 +27,7 @@ const Register = () => {
         <div className="card bg-base-100 w-full max-w-sm mx-auto mt-5 shrink-0 shadow-2xl">
           <div className="card-body">
             <h1 className="text-5xl font-bold mx-auto">Register now!</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleRegister}>
               <fieldset className="fieldset">
                 {/* name */}
                 <label className="label">Name</label>
@@ -65,7 +65,7 @@ const Register = () => {
                 <button className="btn btn-neutral mt-4">Register</button>
               </fieldset>
               {/* login page route */}
-              <p className="mt-2 font-medium">
+              <p className="mt-2 font-medium text-center">
                 Already have an account?{" "}
                 <Link
                   to="/login"

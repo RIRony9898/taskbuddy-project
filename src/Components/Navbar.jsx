@@ -1,7 +1,16 @@
 import { Link, NavLink } from "react-router";
 import Container from "../Components/Container";
+import { useContext } from "react";
+import AuthContext from "../Authentication/AuthContext";
 
 const Navbar = () => {
+  const { user, logout } = useContext(AuthContext);
+  // const { displayName, email } = user;
+  // console.log("from navbar", { email, displayName });
+
+  const handleLogout = () => {
+    logout();
+  };
   const links = (
     <>
       <li>
@@ -77,9 +86,32 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
-          {/* sign in & register button */}
           <div className="navbar-end">
-            <Link to={'/login'} className="btn">Sign in</Link>
+            {/* sign in & sign out button */}
+            {user ? (
+              <>
+                {/* Avatar & email */}
+                <div className="flex flex-col md:flex-row items-center gap-1 mr-5">
+                  <div className="avatar">
+                    <div className="w-12 rounded-full">
+                      <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
+                    </div>
+                  </div>
+                  <div className="hidden md:flex">
+                    <h3>{user.displayName || user.email}</h3>
+                  </div>
+                </div>
+                <Link onClick={handleLogout} to={"/login"} className="btn">
+                  Sign out
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to={"/login"} className="btn">
+                  Sign in
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </Container>
